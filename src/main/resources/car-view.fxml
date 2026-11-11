@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" prefWidth="650" prefHeight="500" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarController">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- Верхня панель пошуку та фільтрації -->
+    <HBox spacing="10">
+        <ComboBox fx:id="fieldBox" prefWidth="120"/>
+        <TextField fx:id="queryField" promptText="Значення для пошуку" HBox.hgrow="ALWAYS"/>
+        <Button text="Пошук (частина)" onAction="#searchCars"/>
+        <Button text="Фільтр (точно)" onAction="#filterCars"/>
+        <Button text="Показати всі" onAction="#refreshTable"/>
+    </HBox>
+
+    <!-- Таблиця даних -->
+    <TableView fx:id="carTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colBrand" text="Марка" prefWidth="180"/>
+            <TableColumn fx:id="colModel" text="Модель" prefWidth="180"/>
+            <TableColumn fx:id="colYear" text="Рік" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Форма введення даних -->
+    <HBox spacing="10">
+        <TextField fx:id="brandField" promptText="Марка" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="modelField" promptText="Модель" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="yearField" promptText="Рік" prefWidth="90"/>
+    </HBox>
+
+    <!-- Панель CRUD кнопок -->
+    <HBox spacing="10">
+        <Button text="Додати" onAction="#handleAdd" style="-fx-base: #d4edda;"/>
+        <Button text="Редагувати" onAction="#handleEdit" style="-fx-base: #fff3cd;"/>
+        <Button text="Видалити" onAction="#handleDelete" style="-fx-base: #f8d7da;"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" text="Готово"/>
+    </HBox>
+</VBox>
