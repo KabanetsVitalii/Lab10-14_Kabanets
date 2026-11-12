@@ -7,10 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.LogSetup;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+        LogSetup.configure();
         CarDao dao = new CarJdbcDAO();
         CarService service = new CarService(dao);
 
@@ -20,8 +22,8 @@ public class Main extends Application {
         CarController controller = loader.getController();
         controller.setCarService(service);
 
-        stage.setScene(new Scene(root, 700, 500));
-        stage.setTitle("Система обліку автомобілів — JDBC та FXML (ЛР11)");
+        stage.setScene(new Scene(root, 750, 550));
+        stage.setTitle("Система обліку автомобілів — ЛР12 ");
         stage.show();
     }
 

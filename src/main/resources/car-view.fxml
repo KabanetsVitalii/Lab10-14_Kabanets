@@ -4,29 +4,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" prefWidth="650" prefHeight="500" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarController">
+<VBox spacing="10" prefWidth="750" prefHeight="550" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarController">
     <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
     </padding>
 
-    <!-- Верхня панель пошуку та фільтрації -->
+    <!-- Панель пошуку та фільтрації -->
     <HBox spacing="10">
         <ComboBox fx:id="fieldBox" prefWidth="120"/>
         <TextField fx:id="queryField" promptText="Значення для пошуку" HBox.hgrow="ALWAYS"/>
-        <Button text="Пошук (частина)" onAction="#searchCars"/>
-        <Button text="Фільтр (точно)" onAction="#filterCars"/>
-        <Button text="Показати всі" onAction="#refreshTable"/>
+        <Button fx:id="searchBtn" text="Пошук" onAction="#searchCars"/>
+        <Button fx:id="filterBtn" text="Фільтр" onAction="#filterCars"/>
+        <Button fx:id="resetBtn" text="Всі" onAction="#refreshTable"/>
     </HBox>
 
     <!-- Таблиця даних -->
     <TableView fx:id="carTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-            <TableColumn fx:id="colBrand" text="Марка" prefWidth="180"/>
-            <TableColumn fx:id="colModel" text="Модель" prefWidth="180"/>
-            <TableColumn fx:id="colYear" text="Рік" prefWidth="100"/>
+            <TableColumn fx:id="colBrand" text="Марка" prefWidth="170"/>
+            <TableColumn fx:id="colModel" text="Модель" prefWidth="170"/>
+            <TableColumn fx:id="colYear" text="Рік" prefWidth="90"/>
         </columns>
     </TableView>
+
+    <!-- Панель індикації та прогресу -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ProgressBar fx:id="progress" prefWidth="200" progress="0.0"/>
+        <Button fx:id="validateBtn" text="Перевірити записи" onAction="#validateCars"/>
+        <Button fx:id="cancelBtn" text="Скасувати" onAction="#cancelValidation"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" text="Готово"/>
+    </HBox>
 
     <!-- Форма введення даних -->
     <HBox spacing="10">
@@ -37,10 +46,8 @@
 
     <!-- Панель CRUD кнопок -->
     <HBox spacing="10">
-        <Button text="Додати" onAction="#handleAdd" style="-fx-base: #d4edda;"/>
-        <Button text="Редагувати" onAction="#handleEdit" style="-fx-base: #fff3cd;"/>
-        <Button text="Видалити" onAction="#handleDelete" style="-fx-base: #f8d7da;"/>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <Label fx:id="statusLabel" text="Готово"/>
+        <Button fx:id="addBtn" text="Додати" onAction="#handleAdd"/>
+        <Button fx:id="updateBtn" text="Редагувати" onAction="#handleEdit"/>
+        <Button fx:id="deleteBtn" text="Видалити" onAction="#handleDelete"/>
     </HBox>
 </VBox>
